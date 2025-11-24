@@ -4,32 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <button onclick="demoNative()">Native Types</button>
-    <button id="btn2">Register click from code</button>
-    <br>
-    <hr>
-    <table>
-        <tr>
-            <td style="padding: 5px;">
-                <input id="txt1" type="text" style="width: 200px;">
-            </td>
-            <td style="padding: 5px;">
-                <label>+</label>
-            </td>
-            <td style="padding: 5px;">
-                <input id="txt2" type="text" style="width: 200px;">
-            </td>
-            <td style="padding: 5px;">
-                <button id="btnCalc">=</button>
-            </td>
-            <td style="padding: 5px;">
-                <h3 id="lblRes"></h3>
-            </td>
-        </tr>
-    </table>
-    <textarea id="output" style="width: 100%; height: 600px;"></textarea>
+    <div class="container-fluid py-4">
+        <!-- Main responsive row: mobile=stack, tablet=2 cols, desktop=3 cols -->
+        <div class="row g-3">
+            
+            <!-- Category 1: Action Buttons -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">Actions</h5>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary" onclick="demoNative()">Native Types</button>
+                            <button id="btn2" class="btn btn-secondary">Register click from code</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 2: Calculator -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">Calculator</h5>
+                        <div class="row g-2 align-items-center">
+                            <div class="col-12 col-sm-4">
+                                <input id="txt1" type="text" class="form-control" placeholder="Number 1">
+                            </div>
+                            <div class="col-12 col-sm-2">
+                                <select id="op" class="form-select">
+                                    <option value="+">+</option>
+                                    <option value="-">-</option>
+                                    <option value="/">/</option>
+                                    <option value="*">×</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-sm-4">
+                                <input id="txt2" type="text" class="form-control" placeholder="Number 2">
+                            </div>
+                            <div class="col-12 col-sm-2">
+                                <button id="btnCalc" class="btn btn-success w-100">=</button>
+                            </div>
+                            <div class="col-12">
+                                <div class="alert alert-info mb-0 text-center">
+                                    <h5 id="lblRes" class="mb-0">Result</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 3: Output -->
+            <div class="col-12 col-lg-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title mb-3">Output</h5>
+                        
+                        <!-- Append controls -->
+                        <div class="input-group mb-3">
+                            <input id="txtAppend" type="text" class="form-control" placeholder="Line to append">
+                            <button id="btnAppend" class="btn btn-outline-primary">Append</button>
+                        </div>
+                        
+                        <!-- Output textarea -->
+                        <textarea id="output" class="form-control flex-grow-1" style="min-height: 400px;" placeholder="Output will appear here..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="index.js"></script>
 </body>
-<script src="index.js"></script>
 </html>
