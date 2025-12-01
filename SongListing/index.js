@@ -1,7 +1,3 @@
-// document.addEventListener('DOMContentLoaded', () => {
-
-// });
-
 // Get references to DOM elements
 const form = document.getElementById('songForm');
 const list = document.getElementById('songList');
