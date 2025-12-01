@@ -3,6 +3,7 @@ let form, list, submitBtn, sortInputs;
 // global view flag: true = list (table) view, false = card view
 let isListView = true;
 let cardContainer, tableEl, listViewBtn, cardViewBtn;
+let searchInput, searchBtn;
 
 document.addEventListener('DOMContentLoaded', () => {
     // Get references to DOM elements
@@ -36,6 +37,26 @@ document.addEventListener('DOMContentLoaded', () => {
     cardContainer = document.getElementById('cardContainer');
     // the existing `list` is the <tbody>; find the table element to show/hide
     tableEl = list ? list.closest('table') : null;
+
+    // Search controls
+    searchInput = document.getElementById('search');
+    searchBtn = document.getElementById('searchBtn');
+
+    if (searchBtn) {
+        searchBtn.addEventListener('click', () => {
+            renderSongs();
+        });
+    }
+
+    if (searchInput) {
+        // trigger search on Enter key
+        searchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                renderSongs();
+            }
+        });
+    }
 
     if (listViewBtn && cardViewBtn) {
         listViewBtn.addEventListener('click', () => {
@@ -389,7 +410,18 @@ function renderAsCards() {
 
 // Create a shallow copy of songs and sort according to the select value
 function getSortedSongs() {
-    const toRender = [...songs];
+    // Start with a shallow copy
+    const all = [...songs];
+
+    // Apply search filter by title (case-insensitive)
+    let searchInput = document.getElementById('search');
+    const q = (searchInput && searchInput.value || '').trim().toLowerCase();
+    let toRender = all;
+    if (q) {
+        toRender = all.filter(s => (s.title || '').toLowerCase().includes(q));
+    }
+
+    // Then sort according to selected option
     const checked = document.querySelector('input[name="sort"]:checked');
     const sortVal = checked ? checked.value : 'newest';
     if (sortVal === 'az') {
@@ -400,6 +432,7 @@ function getSortedSongs() {
     } else { // default/newest
         toRender.sort((a, b) => (b.dateAdded || 0) - (a.dateAdded || 0));
     }
+
     return toRender;
 }
 
