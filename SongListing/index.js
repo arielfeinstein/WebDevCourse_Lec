@@ -57,9 +57,13 @@ function renderSongs(songArray) {
         // Create table row
         const row = document.createElement('tr');
         
+        // Generate 5 star rating icons (visual only, no logic yet)
+        const stars = '<i class="fas fa-star text-warning"></i>'.repeat(5);
+        
         row.innerHTML = `
             <td>${song.title}</td>
             <td><a href="${song.url}" target="_blank" class="text-info">Watch</a></td>
+            <td>${stars}</td>
             <td class="text-end">
                 <button class="btn btn-sm btn-warning me-2" onclick="editSong(${song.id})">
                     <i class="fas fa-edit"></i>
